@@ -1,0 +1,33 @@
+<div class="col-lg-3">
+                <div class="product-item">
+                    <div class="img-responsive">
+                        <a href="{% url 'book-detail' img_book.book.id %}" >
+                           <img src="{{img_book.image.url}}" class="item-image">
+                        </a>
+
+                    </div>
+                    {% if img_book.book.discount%}
+                    <div class="discount-container">
+
+                        <span>{{img_book.book.discount}}</span>
+                    </div>
+                   {% endif %}
+                    <div class="item-title">
+                      <h4>{{ img_book.book.name }}</h4>
+                    </div>
+                    <div class="item-desc">
+                       <p>{{ img_book.book.description}}</p>
+                    </div>
+                    <div class="item-price">
+                        <p>  Цена: {{img_book.book.price}} UAH</p>
+                    </div>
+                    <div class="add-btn">
+
+                        <button type="button" class="btn btn-success center-block">Добавить в корзину</button>
+
+                    </div>
+
+
+                </div>
+
+            </div>

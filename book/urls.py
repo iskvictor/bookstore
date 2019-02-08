@@ -21,5 +21,7 @@ from django.urls import path, re_path
 from . import views
 
 urlpatterns = [
-    re_path(r'^$', views.BookListView.as_view(), name="book_list"),
+#    re_path(r'^$', views.BookListView.as_view(), name="book_list"),
+    re_path(r'^book/(?P<pk>\d+)$', views.BookDetailView.as_view(), name='book-detail'),
+
 ]

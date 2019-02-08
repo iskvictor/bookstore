@@ -25,5 +25,7 @@ class OrderAdmin(admin.ModelAdmin):
 class ProductInOrderAdmin(admin.ModelAdmin):
     exclude = ('',)
 
-
+@admin.register(ProductInBasket)
+class ProductInBasketrAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in ProductInBasket._meta.get_fields()]
 

@@ -6,10 +6,16 @@ class BookImageInLine(admin.TabularInline):
     model = BookImage
 
 
+@admin.register(BookCategory)
+class BookCategoryAdmin(admin.ModelAdmin):
+    list_display = ['name', 'is_active','id']
+
+
+
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ['name', 'description','id','price']
-    inlines = [ BookImageInLine ]
+    list_display = ['name', 'description','id','price','discount', 'category']
+    inlines = [BookImageInLine]
 
 
 @admin.register(BookImage)

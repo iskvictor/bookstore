@@ -1,1 +1,63 @@
-{% extends 'base.html' %} {% load static %}
+{% extends "base.html"%}
+{% load static %}
+{% block content%}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            {% for image_item in detail_book.bookimage_set.all %}
+            <img src="{{image_item.image.url}}" class="img-responsive">
+            {% endfor %}
+        </div>
+        <div class="col-lg-6">
+            <h2 class="text-center">
+              {{detail_book.name}}
+            </h2>
+            <div class="">
+                <p> Цена: {{detail_book.price}} </p>
+            </div>
+
+               <div>
+                  <!-- Навигация -->
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li class="active"><a href="#description" aria-controls="home" role="tab" data-toggle="tab">Описание</a></li>
+                    <li><a href="#delivery" aria-controls="profile" role="tab" data-toggle="tab">Доставка</a></li>
+                    <li><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Сообщения</a></li>
+                    <li><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Настройки</a></li>
+                  </ul>
+                  <!-- Содержимое вкладок -->
+                  <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="description">
+                        <p>{{ detail_book.description}}</p>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="delivery">
+                        <p>Информация про достаку</p>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="messages">
+                        222
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="settings">
+                        333
+                    </div>
+                  </div>
+                   <form id="form_buying_book" class="form-inline" action="{% url 'basket_adding'%}">{% csrf_token %}
+                       <input type="number" class="form-control" id="number">
+                       <div class="form-group">
+                         <button type="submit" class="btn btn-success btn-buy"  id="submit_btn"
+                             data-product_id = '{{ detail_book.id }}'
+                             data-name = '{{detail_book.name}}'
+                             data-price = '{{ detail_book.price }}'
+                         >
+                           Купить
+                         </button>
+                       </div>
+                   </form>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock%}
