@@ -20,6 +20,8 @@ from django.urls import path, re_path
 
 from . import views
 
+app_name = 'orders'
+
 urlpatterns = [
     re_path('^basket_adding/$', views.basket_adding, name='basket_adding'),
     re_path('^checkout/$', views.checkout, name='checkout'),

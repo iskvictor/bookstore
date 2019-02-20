@@ -20,8 +20,13 @@ from django.urls import path, re_path
 
 from . import views
 
+
+app_name ="book"
+
+
 urlpatterns = [
-#    re_path(r'^$', views.BookListView.as_view(), name="book_list"),
-    re_path(r'^book/(?P<pk>\d+)$', views.BookDetailView.as_view(), name='book-detail'),
+    re_path(r'^(?P<slug>[-\w]+)/$', views.BookDetailView.as_view(), name='book-detail'),
+    re_path(r'^category/(?P<category_slug>[-\w]+)/$', views.CategoryDetailView.as_view(), name='list_category'),
+    re_path(r'^$', views.BookListView.as_view(), name="book_list")
 
 ]

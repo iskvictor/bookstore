@@ -1,8 +1,10 @@
-<div class="col-lg-3">
-                <div class="product-item">
+<div class="list_item">
+    <div class="col-xs-6 col-sm-3 box" >
+            <div class="product-item">
                     <div class="img-responsive">
-                        <a href="{% url 'book-detail' img_book.book.id %}" >
-                           <img src="{{img_book.image.url}}" class="item-image">
+
+                        <a href="{{img_book.get_absolute_url}}" >
+                                 <img src="{{img_book.image.url}}" class="item-image">
                         </a>
 
                     </div>
@@ -31,3 +33,5 @@
                 </div>
 
             </div>
+
+</div>

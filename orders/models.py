@@ -1,5 +1,6 @@
 from django.db import models
 from book.models import Book
+from django.urls import reverse
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 # Create your models here.
@@ -91,6 +92,7 @@ class ProductInBasket(models.Model):
 
     def __str__(self):
         return '{}'.format(self.book)
+
 
     class Meta:
         verbose_name = 'Книга в корзине'

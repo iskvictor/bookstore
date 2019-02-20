@@ -39,7 +39,7 @@
                         333
                     </div>
                   </div>
-                   <form id="form_buying_book" class="form-inline" action="{% url 'basket_adding'%}">{% csrf_token %}
+                   <form id="form_buying_book" class="form-inline" action="{% url 'orders:basket_adding'%}">{% csrf_token %}
                        <input type="number" class="form-control" id="number">
                        <div class="form-group">
                          <button type="submit" class="btn btn-success btn-buy"  id="submit_btn"

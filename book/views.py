@@ -1,9 +1,11 @@
 from django.views.generic import ListView, DetailView
-from book.models import Book, BookImage
+from book.models import Book, BookImage,BookCategory,Visual
+from django.shortcuts import get_object_or_404, get_list_or_404,render
+
 
 # Create your views here.
 class BookListView(ListView):
-    model = Book
+    model = BookImage
     template_name = 'home.html'
 
 
@@ -14,14 +16,36 @@ class BookListView(ListView):
         context['product_images_superhit'] = images_books.filter(book__category__name='Суперхиты')
         context['product_images_new'] = images_books.filter(book__category__name='Новинки')
         context['product_images_pre_order'] = images_books.filter(book__category__name='Предзаказ')
+        context['images_for_slider']=Visual.objects.filter(is_active=True)
         session_key = self.request.session.session_key
         if not session_key:
             self.request.session.cycle_key()
-        print("session_key",session_key)
+        print("session_key", session_key)
         return context
 
 
 class BookDetailView(DetailView):
     model = Book
+
     template_name = "book/book.html"
     context_object_name = "detail_book"
+
+    def get_object(self):
+        return get_object_or_404(Book, slug=self.kwargs['slug'])
+
+
+
+class CategoryDetailView(ListView):
+    model = Book
+    template_name = "book/book_category.html"
+    context_object_name = "list_categories"
+
+    def get_context_data(self, **kwargs):
+        print('************************************')
+        context = super(CategoryDetailView, self).get_context_data(**kwargs)
+        context['list_categories'] = BookImage.objects.filter(book__category__slug=self.kwargs['category_slug'],
+                                 is_active=True, is_main=True, book__is_active=True)
+        context['category']= BookCategory.objects.get(slug=self.kwargs['category_slug']),
+        print("++++++++++++++",context)
+        return context
+

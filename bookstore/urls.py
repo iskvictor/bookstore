@@ -21,10 +21,11 @@ from book import views
 
 
 urlpatterns = [
-    path('orders/', include('orders.urls')),
-    path('books/', include('book.urls')),
-    path('admin/', admin.site.urls),
-    re_path(r'^$', views.BookListView.as_view(), name="book_list")
+      path('orders/', include('orders.urls')),
+      path('books/', include('book.urls')),
+      path('admin/', admin.site.urls),
+      path('', include('book.urls')),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
               # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
 

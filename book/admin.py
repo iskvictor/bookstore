@@ -5,6 +5,8 @@ from . models import *
 class BookImageInLine(admin.TabularInline):
     model = BookImage
 
+class VisualInLine(admin.TabularInline):
+    model = Visual
 
 @admin.register(BookCategory)
 class BookCategoryAdmin(admin.ModelAdmin):
@@ -15,11 +17,17 @@ class BookCategoryAdmin(admin.ModelAdmin):
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
     list_display = ['name', 'description','id','price','discount', 'category']
-    inlines = [BookImageInLine]
+    inlines = [BookImageInLine,VisualInLine]
+
 
 
 @admin.register(BookImage)
 class BookImageAdmin(admin.ModelAdmin):
     exclude = ('',)
+
+
+@admin.register(Visual)
+class Visual(admin.ModelAdmin):
+    list_display = [field.name for field in Visual._meta.get_fields()]
 
 

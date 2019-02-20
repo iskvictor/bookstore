@@ -29,3 +29,6 @@ class ProductInOrderAdmin(admin.ModelAdmin):
 class ProductInBasketrAdmin(admin.ModelAdmin):
     list_display = [field.name for field in ProductInBasket._meta.get_fields()]
 
+
+
+
