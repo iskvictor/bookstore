@@ -10,7 +10,8 @@
                     <h5 class="text-center"> Общая стоимость: {{ request.session.basket.total_amount }} грн.</h5>
                     {{ request.session.basket.products }}
 
-                    <form class="form-horizontal" method="post">{% csrf_token %}
+                    <form class="form-horizontal " method="post">{% csrf_token %}
+                    <!--<form  class="form-inline form_buying_book" action="{% url 'orders:basket_adding'%}">{% csrf_token %}-->
                         <div class="form-group">
                             <div class="col-lg-4">
                             <span class="form-errors">{{ form.name.errors}}</span>
@@ -35,22 +36,34 @@
                              <th>Количество</th>
                              <th>Цена за еденицу</th>
                              <th>Общая цена</th>
+                             <th>Действия</th>
                              </tr>
                              </thead>
-                             <tbody>
+                             <tbody class="basket-count " data-products_in_basket="{{products_in_basket}}">
                              {% for product_in_basket in products_in_basket %}
-                                 <tr>
-                                 <td>{{product_in_basket.book.name}}</td>
-                                 <td class="product_in_basket_nmb">
-                                     <input value="{{product_i_basket.number}}" type="number" class="product-in-basket-nmb" name="product_in_basket_{{product_in_basket.id}}" >
-                                 </td>
-                                 <td class="product-price">
-                                     {{product_in_basket.price_per_item}}
-                                 </td>
-                                 <td><span class="total-product-in_basket-amount">
-                                     {{product_in_basket.total_price}}
-                                 </span>
-                                 </td>
+                                 <tr class="cart-item-{{product_in_basket.id}} ">
+                                     <td>{{product_in_basket.book.name}}</td>
+                                     <td class="product_in_basket_nmb" >
+                                         <input value="{{product_in_basket.number}}" type="number" class="product-in-basket-nmb"
+                                                name="product_in_basket_{{product_in_basket.id}}" min="1" style="width:50px" >
+                                     </td>
+                                     <td class="product-price">
+                                         {{product_in_basket.price_per_item}}
+                                     </td>
+                                     <td><span class="total-product-in_basket-amount">
+                                         {{product_in_basket.total_price}}
+                                     </span>
+                                     </td>
+                                     <td>
+                                         <a href="{% url 'orders:remove_from_cart'%}" class="delete_item"
+                                            data-product_id = '{{ product_in_basket.id }}'>
+                                             <button type="submit" class="btn btn-success btn-buy  ">
+                                               <i class="glyphicon glyphicon-trash "></i>
+                                             </button>
+                                         </a>
+
+
+                                     </td>
                                  </tr>
                              {% endfor %}
                              </tbody>
@@ -66,8 +79,11 @@
                     </form>
                 </div>
         {% else %}
-        <h3 class="text-center"> В Вашей корзине нет товаров </h3>
+        <div class="basket-empty">
+         <h3 class="text-center"> В Вашей корзине нет товаров </h3>
         {% endif %}
+        </div>
+
     </div>
 </div>
 {% endblock %}

@@ -16,7 +16,7 @@ html, body{
 
 .footer{
     position: relative;
-    margin-top: -180px; /* negative value of footer height */
+   /* margin-top: -180px; /* negative value of footer height */
     height: 180px;
     clear: both;
     background-color: white;
@@ -102,6 +102,7 @@ padding-top: 10px;
 }
 .container{
     width: 1050px;
+    padding-bottom: 20px;
 }
 
 .basket-container{
@@ -156,5 +157,9 @@ color: #8f2424;
 .row {
     margin-left: 22px;
 }
+
+.basket-empty{
+    height: 300px;
+    }
 
 

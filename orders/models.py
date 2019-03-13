@@ -46,7 +46,7 @@ class Order(models.Model):
 class ProductInOrder(models.Model):
     order = models.ForeignKey(Order, blank=True,null=True, default=None,on_delete=models.CASCADE)
     book = models.ForeignKey(Book, blank=True, null=True, default=None,on_delete=models.CASCADE)
-    number = models.IntegerField(default=1)
+    number = models.PositiveIntegerField(default=1)
     price_per_item = models.DecimalField(max_digits=7, decimal_places=2, default=None)
     total_price = models.DecimalField(max_digits=7, decimal_places=2, default=None)#number*price
     is_active = models.BooleanField(default=True)
@@ -61,10 +61,15 @@ class ProductInOrder(models.Model):
         verbose_name_plural = 'Книги  в заказе'
 
     def save(self, *args, **kwargs):
-        price_per_item =self.book.price
-        self.price_per_item = price_per_item
-        self.total_price = int(self.number) * price_per_item
-        super(ProductInOrder, self).save(*args, **kwargs)
+        if self.book is not None:
+            price_per_item =self.book.price
+
+
+            self.price_per_item = price_per_item
+            self.total_price = int(self.number) * price_per_item
+            super(ProductInOrder, self).save(*args, **kwargs)
+        else:
+            print('///none///')
 
 def product_in_order_post_save(sender, instance, **kwargs):
     order = instance.order
@@ -83,7 +88,7 @@ class ProductInBasket(models.Model):
     session_key = models.CharField(max_length=128,blank=True,null=True, default=None)
     order = models.ForeignKey(Order, blank=True,null=True, default=None,on_delete=models.CASCADE)
     book = models.ForeignKey(Book, blank=True, null=True, default=None,on_delete=models.CASCADE)
-    number = models.IntegerField(default=1)
+    number = models.PositiveIntegerField(default=1)
     price_per_item = models.DecimalField(max_digits=7, decimal_places=2, default=0)
     total_price = models.DecimalField(max_digits=7, decimal_places=2, default=0 )#number*price
     is_active = models.BooleanField(default=True)
@@ -100,7 +105,8 @@ class ProductInBasket(models.Model):
 
 
     def save(self, *args, **kwargs):
-        price_per_item =self.book.price
+        print('++++price_per_item+++',self.book)
+        price_per_item = self.book.price
         self.price_per_item = price_per_item
         self.total_price = int(self.number) * price_per_item
         super(ProductInBasket, self).save(*args, **kwargs)

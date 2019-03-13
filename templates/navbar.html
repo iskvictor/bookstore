@@ -34,26 +34,19 @@
           <ul class="nav navbar-nav navbar-right">
             <li>
               <a href="{% url 'orders:checkout'%}">Корзина</a>
-              <div class="basket-container">
-                <a href="#">
+              <div class="basket-container" >
 
-                  <span id="basket_total_amount"></span><span id="basket_total_nmb">
+
+                  <span id="basket_total_amount"></span>
+
+                  <a class="basket-count" href="{% url 'orders:basket_count'%}"><span id="basket_total_nmb" >
                   {% if products_total_nmb %}
                       ({{products_total_nmb}})
                   {% else %}
                       (0)
                   {% endif %}
                   </span>
-                </a>
-              <div class="basket-items hidden" >
-                  <ul class="">
-                      {% for product_in_basket in products_in_basket %}
-                        <li>{{product_in_basket.book.name}}-{{product_in_basket.number}} шт. по {{product_in_basket.book.price}} UAH</li>
-                        <a href="#" class="delete_item" data-product_id = {{product_in_basket.id}}  >x</a>
-                      {% endfor %}
-
-                  </ul>
-                </div>
+                  </a>
               </div>
             </li>
 
@@ -61,4 +54,4 @@
           </ul>
         </div><!--/.nav-collapse -->
       </div>
-    </div>
+</div>

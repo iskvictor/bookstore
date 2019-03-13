@@ -24,5 +24,8 @@ app_name = 'orders'
 
 urlpatterns = [
     re_path('^basket_adding/$', views.basket_adding, name='basket_adding'),
+    # re_path('^add_to_cart/$', views.add_to_cart_view, name='add_to_cart'),
     re_path('^checkout/$', views.checkout, name='checkout'),
+    re_path('^remove_from_cart/$', views.remove_from_cart_view, name='remove_from_cart'),
+    re_path('^count-cart/$', views.basket_count, name='basket_count'),
 ]
