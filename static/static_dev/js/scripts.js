@@ -2,7 +2,7 @@ $(document).ready(function(){
     var form = $('.form_buying_book');
     console.log(form);
 
-    function basketUpdating(product_id, nmb,is_delete=true){
+    function basketUpdating(product_id, nmb){
          console.log('---------------basketUpdating');
          var data = {};
              data.product_id = product_id;
@@ -11,7 +11,7 @@ $(document).ready(function(){
              var csrf_token = $('.form_buying_book [name="csrfmiddlewaretoken"]').val();
              console.log('csrf_token',csrf_token)
              data['csrfmiddlewaretoken']=csrf_token;
-             data['is_delete']=is_delete;
+//             data['is_delete']=is_delete;
              console.log('---data------',data)
 
              var url = form.attr("action");
@@ -51,7 +51,7 @@ $(document).ready(function(){
             console.log(product_id);
             console.log(product_name);
              console.log(product_price);
-             basketUpdating(product_id, nmb,is_delete=false)
+             basketUpdating(product_id, nmb)
     });
 
 
@@ -122,7 +122,7 @@ $(document).ready(function(){
      calculatingBasketAmount()
 
 
-     $(document).on('change' ,".product-in-basket-nmb", function(){
+     $(document).on('click' ,".total_amount, .product-in-basket-nmb", function(){
      console.log('total_amount')
      var current_nmb = $(this).val();
      var current_tr = $(this).closest('tr');

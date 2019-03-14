@@ -57,7 +57,7 @@
                                      <td>
                                          <a href="{% url 'orders:remove_from_cart'%}" class="delete_item"
                                             data-product_id = '{{ product_in_basket.id }}'>
-                                             <button type="submit" class="btn btn-success btn-buy  ">
+                                             <button type="submit" class="btn btn-success btn-buy total_amount  ">
                                                <i class="glyphicon glyphicon-trash "></i>
                                              </button>
                                          </a>
@@ -72,7 +72,7 @@
                             <b>Сумма заказа:</b><span id="total_order_amount"></span>
                         </div>
                         <div class="text-right">
-                            <button type="submit" class="btn btn-success btn-lg">
+                            <button type="submit" class="btn btn-success btn-lg ">
                                 Заказать
                             </button>
                         </div>

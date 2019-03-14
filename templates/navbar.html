@@ -39,7 +39,7 @@
 
                   <span id="basket_total_amount"></span>
 
-                  <a class="basket-count" href="{% url 'orders:basket_count'%}"><span id="basket_total_nmb" >
+                  <a class="basket-count not-active"  href="{% url 'orders:basket_count'%}"><span id="basket_total_nmb" >
                   {% if products_total_nmb %}
                       ({{products_total_nmb}})
                   {% else %}

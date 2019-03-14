@@ -6,26 +6,16 @@ from django.contrib.auth.models import User
 # Create your views here.
 def basket_adding(request):
     print('///////////////// basket_adding')
-    # return_dict = dict()
     session_key = request.session.session_key
     print('-------request.POST',request.POST)
-
     data = request.POST
     product_id = data.get('product_id')
     nmb = data.get('nmb')
-
-    is_delete=data.get("is_delete")
-    print('is_delete',is_delete)
-    if is_delete =='true':
-        ProductInBasket.objects.filter(id=product_id).update(is_active=False)
-        print('+++++++++++++++++is_delete ==true')
-    else:
-        new_product,created = ProductInBasket.objects.get_or_create(session_key=session_key,book_id=product_id,is_active=True, defaults={'number':nmb})
-        if not created:
-            print('created',new_product.number)
-            new_product.number += int(nmb)
-            new_product.save(force_update=True)
-
+    new_product,created = ProductInBasket.objects.get_or_create(session_key=session_key,book_id=product_id,is_active=True, defaults={'number':nmb})
+    if not created:
+        print('created',new_product.number)
+        new_product.number += int(nmb)
+        new_product.save(force_update=True)
     return JsonResponse(Product_in_basket(session_key))
 
 
@@ -35,7 +25,6 @@ def Product_in_basket(session_key):
     products_in_basket = ProductInBasket.objects.filter(session_key=session_key, is_active=True)
     products_total_nmb = products_in_basket.count()
     return_dict['products_total_nmb'] = products_total_nmb
-
     return_dict['products'] = list()
     for item in products_in_basket:
         product_dict = {}
@@ -44,7 +33,6 @@ def Product_in_basket(session_key):
         product_dict['price_per_item'] = item.price_per_item
         product_dict['number'] = item.number
         return_dict['products'].append(product_dict)
-
     return return_dict
 
 
@@ -53,19 +41,13 @@ def basket_count(request):
     return JsonResponse(Product_in_basket(session_key))
 
 
-
 def remove_from_cart_view(request):
     session_key = request.session.session_key
     print('remove cart**********')
     print('-----------request.GET',request.GET.get('product_id'))
     product_id = request.GET.get('product_id')
     ProductInBasket.objects.filter(id=product_id).update(is_active=False)
-
     return JsonResponse(Product_in_basket(session_key))
-
-
-
-
 
 
 def checkout(request):

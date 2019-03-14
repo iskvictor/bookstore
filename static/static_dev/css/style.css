@@ -162,4 +162,9 @@ color: #8f2424;
     height: 300px;
     }
 
+.not-active {
+   pointer-events: none;
+   cursor: default;
+}
+
 
