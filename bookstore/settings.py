@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'book',
     'orders',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -137,3 +138,4 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "static", "media")
 
+CRISPY_TEMPLATE_PACK = "bootstrap3"

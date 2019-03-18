@@ -14,10 +14,7 @@ class StatusAdmin(admin.ModelAdmin):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['total_price', 'customer_name', 'customer_email',
-                    'customer_phone', 'customer_address', 'status',
-                    'comments', 'created', 'updated',
-                    ]
+
     inlines = [ProductInOrderInLine]
 
 

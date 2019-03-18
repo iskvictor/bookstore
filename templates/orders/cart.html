@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% if products_in_basket %}
+                <div class="col-lg-8 col-lg-offset-2 ">
+                    <h3 class="text-center"> Товары в корзине </h3>
+                    <h5 class="text-center"> Общая стоимость: {{ request.session.basket.total_amount }} грн.</h5>
+                    {{ request.session.basket.products }}
+
+                    <!--<form class="form-horizontal form_buying_book " method="post">{% csrf_token %}-->
+                    <!--<form  class="form-inline form_buying_book" action="{% url 'orders:basket_adding'%}">{% csrf_token %}-->
+                        <!--<div class="form-group">-->
+                            <!--<div class="col-lg-4">-->
+                            <!--<span class="form-errors">{{ form.name.errors}}</span>-->
+                            <!--<label >Имя</label>-->
+                            <!--<input type="text" name="{{form.name.html_name}}"-->
+                            <!--value="{{request.POST.name}}">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<div class="col-lg-4">-->
+                                <!--<span class="form-errors">{{ form.phone.errors}}</span>-->
+                                <!--<label >Телефон</label>-->
+                                <!--<input type="text" name="{{ form.phone.html_name}}"-->
+                                <!--value="{{request.POST.phone}}"-->
+                                <!--&gt;-->
+                            <!--</div>-->
+                        <!--</div>-->
+                         <table class="table">
+                             <thead>
+                             <tr>
+                             <th>Название товара</th>
+                             <th>Количество</th>
+                             <th>Цена за еденицу</th>
+                             <th>Общая цена</th>
+                             <th>Действия</th>
+                             </tr>
+                             </thead>
+                             <tbody class="basket-count " data-products_in_basket="{{products_in_basket}}">
+                             {% for product_in_basket in products_in_basket %}
+                                 <tr class="cart-item-{{product_in_basket.id}} ">
+                                     <td>{{product_in_basket.book.name}}</td>
+
+                                     <td class="product_in_basket_nmb" >
+                                         <form  class="form-inline cart-qty" method="GET" action="{% url 'orders:change_item_qty'%}">
+                                             <input value="{{product_in_basket.number}}" type="number" class="product-in-basket-nmb cart-item-qty"
+                                                name="product_in_basket_{{product_in_basket.id}}" min="1" style="width:50px"
+                                                     data-product_basket_id = '{{ product_in_basket.id }}'
+                                                     >
+                                         </form>
+                                     </td>
+
+
+
+                                     <td class="product-price">
+                                         {{product_in_basket.price_per_item}}
+                                     </td>
+                                     <td><span class="total-product-in_basket-amount">
+                                         {{product_in_basket.total_price}}
+                                     </span>
+                                     </td>
+                                     <td>
+                                         <a href="{% url 'orders:remove_from_cart'%}" class="delete_item"
+                                            data-product_id = '{{ product_in_basket.id }}'>
+                                             <button type="submit" class="btn btn-success btn-buy total_amount  ">
+                                               <i class="glyphicon glyphicon-trash "></i>
+                                             </button>
+                                         </a>
+
+
+                                     </td>
+                                 </tr>
+                             {% endfor %}
+                             </tbody>
+                             </table>
+                        <div class="text-right">
+                            <b>Сумма заказа:</b><span id="total_order_amount"></span>
+                        </div>
+                        <div class="text-right">
+                            <a href="{% url 'orders:checkout'%}">
+                                <button type="submit" class="btn btn-success btn-lg  "
+
+
+                                >
+                                Предварительный заказ
+                            </button>
+                            </a>
+
+
+                        </div>
+                    </form>
+                </div>
+        {% else %}
+        <div class="basket-empty">
+         <h3 class="text-center"> В Вашей корзине нет товаров </h3>
+        {% endif %}
+        </div>
+
+    </div>
+</div>
+{% endblock %}

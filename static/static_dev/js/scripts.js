@@ -1,6 +1,6 @@
 $(document).ready(function(){
     var form = $('.form_buying_book');
-    console.log(form);
+    console.log('form',form);
 
     function basketUpdating(product_id, nmb){
          console.log('---------------basketUpdating');
@@ -79,6 +79,37 @@ $(document).ready(function(){
       basket_count()
 
 
+      $(document).on('click','.cart-item-qty', function(){
+         console.log('---------------cart-item-qty');
+         product_basket_id = $(this).data('product_basket_id');
+         qty = $(this).val()
+         console.log('product_basket_id',product_basket_id)
+         var data = {};
+         data.product_basket_id= product_basket_id;
+         data.qty= qty;
+         var url = $('.cart-qty').attr('action')
+         console.log('+++++url',url)
+         console.log('+++++qty',qty)
+         console.log('+++++product_basket_id',product_basket_id)
+         console.log('+++++data',data)
+         $.ajax({
+                 url:url,
+                 type:'GET',
+                 data:data,
+                 cache:true,
+                 success:function(data){
+                    console.log('ok')
+
+
+                 },
+                 error:function(){
+                 console.log('error')
+                 }
+         });
+
+     })
+
+
      $(document).on('click','.delete_item', function(e){
          console.log('---------------delete_item');
          e.preventDefault()
@@ -132,6 +163,20 @@ $(document).ready(function(){
      current_tr.find('.total-product-in_basket-amount').text(total_amount);
      console.log('total_amount',total_amount)
      calculatingBasketAmount()
+     })
+
+
+     $(document).ready(function(){
+        $('#div_id_address').css('display','none')
+        $('#id_buying_type').on('click', function(){
+        buying_type = $(this).val();
+        if(buying_type == 'delivery'){$('#div_id_address').css('display','block')}
+        else{$('#div_id_address').css('display','none')}
+
+        })
+        $('#id_date_day').css('width', '50px').css('display', 'inline')
+        $('#id_date_month').css('width', '100px').css('display', 'inline')
+        $('#id_date_year').css('width', '100px').css('display', 'inline')﻿
      })
 
 

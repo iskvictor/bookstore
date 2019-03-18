@@ -23,17 +23,19 @@ class Status(models.Model):
 class Order(models.Model):
     user = models.ForeignKey(User,blank=True, null=True, default=None, on_delete=models.CASCADE)
     total_price = models.DecimalField(max_digits=7, decimal_places=2, default=None, null=True)#total price in order
-    customer_name = models.CharField(max_length=64, blank=True, null=True, default=None)
-    customer_email = models.EmailField(blank=True, null=True, default=None)
-    customer_phone = models.CharField(max_length=48, blank=True, null=True, default=None)
-    customer_address = models.CharField(max_length= 128, blank=True, null=True, default=None)
-    status = models.ForeignKey(Status, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=64, blank=True, null=True, default=None)
+    last_name = models.CharField(max_length=64, blank=True, null=True, default=None)
+    phone = models.CharField(max_length=48, blank=True, null=True, default=None)
+    address = models.CharField(max_length= 128, blank=True, null=True, default=None)
+    buying_type = models.CharField(max_length=40,choices=(('Самовывоз','Самовывоз'),('Доставка','Доставка')),default='Самовывоз')
+    status = models.ForeignKey(Status, on_delete=models.CASCADE, blank=True, null=True)
+    date = models.DateTimeField(auto_now_add=True)
     comments = models.CharField(max_length=64, blank=True, null=True, default=None)
     created = models.DateField(auto_now_add=True, auto_now=False)
     updated = models.DateField(auto_now_add=False, auto_now=True)
 
     def __str__(self):
-        return 'Заказ {},{}'.format(self.id, self.status.name)
+        return 'Заказ {},{}'.format(self.id, self.status)
 
     class Meta:
         verbose_name = 'Заказ'
@@ -62,9 +64,7 @@ class ProductInOrder(models.Model):
 
     def save(self, *args, **kwargs):
         if self.book is not None:
-            price_per_item =self.book.price
-
-
+            price_per_item = self.book.price
             self.price_per_item = price_per_item
             self.total_price = int(self.number) * price_per_item
             super(ProductInOrder, self).save(*args, **kwargs)

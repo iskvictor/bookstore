@@ -25,7 +25,8 @@
                     </div>
                     <div class="add-btn">
                             <form  class="form-inline form_buying_book" action="{% url 'orders:basket_adding'%}">{% csrf_token %}
-                                   <input type="number" value="1"   class="form-control number" style="width:50px" min="1">
+                                   <input type="number" value="1"   class="form-control number" style="width:50px" min="1" >
+
                                    <div class="form-group">
                                      <button type="submit" class="btn btn-success btn-buy submit_btn "
 

@@ -120,9 +120,7 @@ padding-top: 10px;
     top:50px;
     padding:10px;
 }
-.form-errors{
-color: #8f2424;
-}
+
 
 
 
@@ -166,5 +164,10 @@ color: #8f2424;
    pointer-events: none;
    cursor: default;
 }
+
+.block-form{
+
+}
+
 
 
