@@ -3,9 +3,9 @@
 
 {% block content %}
 <div class="container">
-    <div class="row">
+
         {% if products_in_basket %}
-                <div class="col-lg-8 col-lg-offset-2 ">
+
                     <h3 class="text-center"> Ваш предварительный заказ </h3>
 
                          <table class="table">
@@ -40,16 +40,16 @@
                             <b>Сумма заказа:</b><span id="total_order_amount"></span>
                         </div>
                         <a href="{% url 'orders:create_order' %}" class="text-right">
-                            <button type="submit" class="btn btn-success btn-lg ">
+                            <button type="submit" class="btn btn-success btn-sm ">
                                 Оформить заказ
                             </button>
                         </a>
 
-                </div>
+
 
         {% endif %}
         </div>
 
-    </div>
+
 </div>
 {% endblock %}

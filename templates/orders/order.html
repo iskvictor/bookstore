@@ -3,24 +3,27 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-
+<h3 class="text-center"> Оформление заказа</h3>
+<h5 class="text-left"> Информация для оплаты и доставки заказа</h5>
     <form action="{% url 'orders:make_order'%}" method="POST">{% csrf_token %}
-        <div class="block-form">
-    <div class="col-sm-4">
-        {{form.first_name|as_crispy_field}}
-    </div>
-    <div class="col-sm-4">
-        {{form.last_name|as_crispy_field}}
-    </div>
-    <div class="col-sm-4">
-        {{form.phone|as_crispy_field}}
-    </div>
+            <div class="row">
+                <div class="col-4">
+                    {{form.first_name|as_crispy_field}}
+                </div>
+                <div class="col-4">
+                    {{form.last_name|as_crispy_field}}
+                </div>
+                <div class="col-4">
+                    {{form.phone|as_crispy_field}}
+                </div>
+            </div>
+
     {{form.buying_type|as_crispy_field}}
     {{form.address|as_crispy_field}}
     {{form.date|as_crispy_field}}
     {{form.comments|as_crispy_field}}
     <input type="submit" class="btn btn-success" value="Оформить заказ">
-            </div>
+
 </form>
 
 

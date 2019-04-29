@@ -1,40 +1,37 @@
- <div class="row carousel-holder">
+<div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+          <ol class="carousel-indicators">
+              {% for image_len in images_for_slider %}
+              {% if forloop.first%}
+            <li data-target="#carouselExampleIndicators" data-slide-to="{{ forloop.counter0 }}" class="active"></li>
+              {% else %}
+            <li data-target="#carouselExampleIndicators" data-slide-to="{{ forloop.counter0 }"></li>
+               {% endif %}
+              {% endfor %}
+          </ol>
+          <div class="carousel-inner" role="listbox">
+              {% for image_item in images_for_slider %}
+              {% if forloop.first%}
+            <div class="carousel-item active">
+                <a href="{{image_item.get_absolute_url}}" >
+              <img class="d-block img-fluid" src="{{image_item.image.url}}" alt="First slide">
+                </a>
+            </div>
+              {% else %}
+            <div class="carousel-item">
+              <a href="{{image_item.get_absolute_url}}" >
+              <img class="d-block img-fluid" src="{{image_item.image.url}}" alt="First slide">
+                </a>
+            </div>
+              {% endif %}
+              {% endfor %}
 
-                    <div class="col-md-12">
-                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                {% for image_len in images_for_slider %}
-                                {% if forloop.first%}
-                                <li data-target="#carousel-example-generic" data-slide-to="{{ forloop.counter0 }}" class="active"></li>
-                                {% else %}
-                                <li data-target="#carousel-example-generic" data-slide-to="{{ forloop.counter0 }}"></li>
-                                {% endif %}
-                                {% endfor %}
-                            </ol>
-                            <div class="carousel-inner">
-                                {% for image_item in images_for_slider %}
-                                {% if forloop.first%}
-                                    <div class="item active">
-                                        <a href="{{image_item.get_absolute_url}}" >
-                                        <img class="slide-image" src="{{image_item.image.url}}" alt="">
-                                        </a>
-                                    </div>
-                                {% else %}
-                                <div class="item">
-                                <a href="{{image_item.get_absolute_url}}" >
-                                    <img class="slide-image" src="{{image_item.image.url}}" alt="">
-                                </a>
-                                </div>
-                                {% endif %}
-                                {% endfor %}
-                            </div>
-                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
-                            </a>
-                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+</div>

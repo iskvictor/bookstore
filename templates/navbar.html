@@ -1,57 +1,55 @@
-
-<div class="navbar navbar-default navbar-top" >
-  top
-</div>
-<div class="navbar navbar-default navbar-main" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="{% url 'book:book_list'%}">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li>
-              <a href="{% url 'orders:cart'%}">Корзина</a>
-              <div class="basket-container" >
+{% load static %}
+<!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark  nav-color fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'book:book_list'%}">
+          <img src="{% static 'img/logo.png' %}" alt="">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
 
 
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'book:book_list'%}">Главная
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'payments'%}">Оплата</a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" href="{% url 'about'%}"> О нас</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'grafik-raboty'%}"> График работы</a>
+          </li>
+
+        </ul>
+        <ul class="navbar-nav lx-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'orders:cart'%}">Корзина</a>
+          </li>
+            <li class="nav-item">
+                <div class=" basket-container " >
                   <span id="basket_total_amount"></span>
-
-                  <a class="basket-count not-active"  href="{% url 'orders:basket_count'%}"><span id="basket_total_nmb" >
-                  {% if products_total_nmb %}
-                      ({{products_total_nmb}})
-                  {% else %}
-                      (0)
-                  {% endif %}
-                  </span>
+                  <a class="basket-count not-active"  href="{% url 'orders:basket_count'%}">
+                      <span id="basket_total_nmb" >
+                      {% if products_total_nmb %}
+                          ({{products_total_nmb}})
+                      {% else %}
+                          (0)
+                      {% endif %}
+                      </span>
                   </a>
-              </div>
+                </div>
             </li>
+        </ul>
 
 
-          </ul>
-        </div><!--/.nav-collapse -->
+
       </div>
-</div>
+    </div>
+  </nav>

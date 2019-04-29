@@ -3,41 +3,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Интернет магазин книг</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon/favicon-16x16.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon/favicon-16x16.ico' %}">
 
     <!-- Bootstrap-->
     <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">-->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400" rel="stylesheet">
-
+    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
     <!-- Custom styles -->
+    <link rel="stylesheet" href="{% static 'css/albery.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 
 </head>
 <body>
-{% include "navbar.html"%}
-	  <!--<div class="container border-container">-->
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-3 col-md-2 sidebar">
-                {% include "sidebar.html"%}
+ {% include "navbar.html"%}
+
+  <!-- Page Content -->
+  <div class="container">
+      <div class="wrapper-content">
+
+    <div class="row">
+         {% include "sidebar.html"%}
 
 
-            </div>
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main ">
-                {% block content %}
-                {% endblock %}
-                {% include "footer.html"%}
-
-                  </div>
-
-              </div>
-            </div>
+     <div class="col-lg-9">
 
 
-            </div>
+{% block content%}
+ {% endblock %}
+
+
+
+      </div>
+      <!-- /.col-lg-9 -->
+
+
+    </div>
+    <!-- /.row -->
+          </div>
+      {% include "footer.html"%}
+  </div>
+
+  <!-- /.container -->
+
+
 
 
 
@@ -45,13 +61,21 @@
 
 
             <!-- jQuery -->
-        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-        <script src="{% static 'js/scripts.js' %}"></script>
-        </div>
-    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"> </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"> </script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+    <script src="{% static 'js/albery.js' %}"></script>
+    <script>
+		$(".albery-container").albery({
+			speed: 500,
+			imgWidth: 220,
+		});
+	</script>
+
+
+
 
 </body>
 </html>

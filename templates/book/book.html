@@ -1,60 +1,85 @@
 {% extends "base.html"%}
 {% load static %}
 {% block content%}
+
+ <!-- Page Content -->
 <div class="container">
     <div class="row">
-        <div class="col-lg-6">
-            {% for image_item in detail_book.bookimage_set.all %}
-            <img src="{{image_item.image.url}}" class="img-responsive">
-            {% endfor %}
-        </div>
-        <div class="col-lg-6">
-            <h2 class="text-center">
-              {{detail_book.name}}
-            </h2>
-            <div class="">
-                <p> Цена: {{detail_book.price}} </p>
+            <div class="text-header">
+            <h3 class="text-center">{{detail_book.name}}</h3>
             </div>
 
-               <div>
-                  <!-- Навигация -->
-                  <ul class="nav nav-tabs" role="tablist">
-                    <li class="active"><a href="#description" aria-controls="home" role="tab" data-toggle="tab">Описание</a></li>
-                    <li><a href="#delivery" aria-controls="profile" role="tab" data-toggle="tab">Доставка</a></li>
-                    <li><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Сообщения</a></li>
-                    <li><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Настройки</a></li>
-                  </ul>
-                  <!-- Содержимое вкладок -->
-                  <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="description">
-                        <p>{{ detail_book.description}}</p>
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="delivery">
-                        <p>Информация про достаку</p>
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="messages">
-                        222
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="settings">
-                        333
-                    </div>
-                  </div>
-                   <form  class="form-inline form_buying_book" action="{% url 'orders:basket_adding'%}">{% csrf_token %}
-                       <input type="number" value="1"   class="form-control number" style="width:50px" min="1">
-                       <div class="form-group">
-                         <button type="submit" class="btn btn-success btn-buy submit_btn"
-                             data-product_id = '{{ detail_book.id }}'
-                             data-name = '{{detail_book.name}}'
-                             data-price = '{{ detail_book.price }}'
-                         >
-                           Купить
-                         </button>
-                       </div>
-                   </form>
-                </div>
-        </div>
-    </div>
+    <div class="col-md-6">
+        <div class="container">
+
+
+		<div class="albery-container img ">
+
+			<div class="albery-wrapper img">
+                  {% for image_item in detail_book.bookimage_set.all %}
+				<div class="albery-item img  ">
+					<img src="{{image_item.image.url}}" class="img-item" alt="">
+				</div>
+				{% endfor %}
+
+			</div>
+
+			<div class="move-right">
+				<a href="#" id="rightArrow"></a>
+			</div>
+			<div class="move-left">
+				<a href="#" id="leftArrow"></a>
+			</div>
+
+		</div>
+
+		<div class="pagination-container">
+			<div class="pagination-wrapper">
+                {% for image_item in detail_book.bookimage_set.all %}
+				<div class="pagination-item" data-item="{{ forloop.counter }}">
+					<img src="{{image_item.image.url}}" alt="">
+				</div>
+                {% endfor%}
+
+			</div>
+		</div>
 </div>
+
+
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="detail-price">
+            <h5>Цена: {{detail_book.price}}</h5>
+        </div>
+        <div class="detail-description">
+            <p> {{detail_book.description}}</p>
+        </div>
+
+
+       <form  class="form-inline form_buying_book justify-content-left" action="{% url 'orders:basket_adding'%}">{% csrf_token %}
+                   <input type="number" value="1"   class="form-control number" style="width:50px" min="1" >
+
+                   <div class="form-group ">
+                     <button type="submit" class="btn btn-success btn-buy submit_btn  "
+
+                          data-product_id = '{{ detail_book.id }}'
+                          data-name = '{{detail_book.name}}'
+                          data-price = '{{ detail_book.price }}'
+                     >
+                       Купить
+                     </button>
+                   </div>
+    </form>
+
+    </div>
+
+  </div>
+  <!-- /.row -->
+
+</div>
+<!-- /.container -->
 
 
 

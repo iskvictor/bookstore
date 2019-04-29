@@ -118,19 +118,6 @@ def make_order(request):
                                               order=order)
 
 
-            # status  = Status.objects.create(default='новый')
-            # new_order = Order()
-            # new_order.user = request.user
-            # # new_order.save()
-            # new_order.first_name = first_name
-            # new_order.last_name = last_name
-            # new_order.phone = phone
-            # new_order.address = address
-            # new_order.buying_type = buying_type
-            # new_order.comments = comments
-            #
-            # new_order.save()
-            # new_order.total_price = products_in_basket.total_price
             return render(request, 'orders/thank_you.html', locals())
 
 

@@ -58,7 +58,7 @@ $(document).ready(function(){
      function basket_count(){
          console.log('*********Basket_count')
          var url = $('.basket-count').attr('href')
-         data={}
+         data={};
          $.ajax({
                  url:url,
                  type:'GET',

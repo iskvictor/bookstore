@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path, re_path
+from django.views.generic.base import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
 from book import views
@@ -23,6 +24,11 @@ from book import views
 urlpatterns = [
       path('orders/', include('orders.urls')),
       path('books/', include('book.urls')),
+      re_path(r'^delivery/$', TemplateView.as_view(template_name='delivery.html'), name="delivery"),
+      re_path(r'^payments/$', TemplateView.as_view(template_name='payments.html'), name="payments"),
+      re_path(r'^grafik-raboty/$', TemplateView.as_view(template_name='grafic.html'), name="grafik-raboty"),
+      re_path(r'^returns/$', TemplateView.as_view(template_name='returns.html'), name="returns"),
+      re_path(r'^about/$', TemplateView.as_view(template_name='about.html'), name="about"),
       path('admin/', admin.site.urls),
       path('', include('book.urls')),
 

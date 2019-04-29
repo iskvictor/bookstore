@@ -96,8 +96,8 @@ class Visual(models.Model):
     def __str__(self):
         return ' {}'.format(self.id)
 
-    # def get_absolute_url(self):
-    #     return reverse('book-detail', kwargs={'slug': self.book.slug})
+    def get_absolute_url(self):
+        return reverse('book:book-detail', kwargs={'slug': self.book.slug})
 
     class Meta:
         verbose_name = 'Картинка слайдера'
