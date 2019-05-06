@@ -23,4 +23,4 @@ class OrderForm(forms.Form):
         self.fields['address'].help_text = '*Обязательно указывайте город!'
         self.fields['comments'].label = 'Комментарии к заказу'
         self.fields['date'].label = 'Дата доставки'
-        self.fields['date'].help_text = 'Доставка производится на следущий день после оформления заказа. Менеджер с Вами предварительно'
+        self.fields['date'].help_text = 'Доставка производится на следущий день после оформления заказа. Менеджер с Вами предварительно свяжется'

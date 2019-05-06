@@ -3,11 +3,8 @@
 
 {% block content %}
 <div class="container">
-
         {% if products_in_basket %}
-
                     <h3 class="text-center"> Ваш предварительный заказ </h3>
-
                          <table class="table">
                              <thead>
                              <tr>
@@ -30,8 +27,6 @@
                                          {{product_in_basket.total_price}}
                                      </span>
                                      </td>
-
-
                                  </tr>
                              {% endfor %}
                              </tbody>
@@ -44,9 +39,6 @@
                                 Оформить заказ
                             </button>
                         </a>
-
-
-
         {% endif %}
         </div>
 

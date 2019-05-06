@@ -4,9 +4,11 @@ from transliterate import translit
 from django.urls import reverse
 from django.utils.text import slugify
 # Create your models here.
+
+
 class BookCategory(models.Model):
-    name = models.CharField(max_length=64,blank=True, null=True, default=None)
-    slug = models.SlugField(max_length=128,blank=True, null=True, default=None,unique=True)
+    name = models.CharField(max_length=64, blank=True, null=True, default=None)
+    slug = models.SlugField(max_length=128, blank=True, null=True, default=None, unique=True)
     is_active = models.BooleanField(default=True)
 
     def get_absolute_url(self):
@@ -24,9 +26,8 @@ def pre_save_category_slug(sender,instance,*args,**kwargs):
         slug = slugify(translit(str(instance.name), reversed=True))
         instance.slug = slug
 
-
+        
 pre_save.connect(pre_save_category_slug, sender=BookCategory)
-
 
 
 class Book(models.Model):
@@ -42,10 +43,7 @@ class Book(models.Model):
     updated = models.DateField(auto_now_add=False, auto_now=True)
 
     def __str__(self):
-
         return ' {}'.format(self.name)
-
-
 
     def get_absolute_url(self):
         return reverse('book:book-detail', kwargs={'slug': self.slug})
@@ -74,16 +72,14 @@ class BookImage(models.Model):
     def __str__(self):
         return ' {}'.format(self.id)
 
-
     def get_absolute_url(self):
         return reverse('book:book-detail', kwargs={'slug': self.book.slug})
-
-
 
 
     class Meta:
         verbose_name = 'Фотография книги'
         verbose_name_plural = 'Фотографии книг'
+        ordering = ['-id']
 
 
 class Visual(models.Model):
@@ -98,6 +94,7 @@ class Visual(models.Model):
 
     def get_absolute_url(self):
         return reverse('book:book-detail', kwargs={'slug': self.book.slug})
+
 
     class Meta:
         verbose_name = 'Картинка слайдера'

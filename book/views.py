@@ -20,46 +20,30 @@ class BookListView(ListView):
         session_key = self.request.session.session_key
         if not session_key:
             self.request.session.cycle_key()
-        print("session_key", session_key)
         return context
 
 
 class BookDetailView(DetailView):
     model = Book
-
     template_name = "book/book.html"
-
     context_object_name = "detail_book"
 
     def get_object(self):
         return get_object_or_404(Book, slug=self.kwargs['slug'])
 
 
-
 class CategoryDetailView(ListView):
     model = BookImage
     template_name = "book/book_category.html"
-    paginate_by = 28
+    paginate_by = 3
+    context_object_name = 'contacts'
 
     def get_context_data(self, **kwargs):
-        print('************************************')
-        context = super(CategoryDetailView, self).get_context_data(**kwargs)
-        contacts = BookImage.objects.filter(book__category__slug=self.kwargs['category_slug'],
-                                 is_active=True, is_main=True, book__is_active=True)
-        context['category']= BookCategory.objects.get(slug=self.kwargs['category_slug']),
-        paginator = Paginator(contacts, self.paginate_by)
+            context = super(CategoryDetailView, self).get_context_data(**kwargs)
+            category = BookCategory.objects.get(slug=self.kwargs['category_slug'])
+            context['category'] = category
+            return context
 
-        page = self.request.GET.get('page')
-
-        try:
-            file_exams = paginator.page(page)
-        except PageNotAnInteger:
-            file_exams = paginator.page(1)
-        except EmptyPage:
-            file_exams = paginator.page(paginator.num_pages)
-
-        context['contacts']=file_exams
-
-
-        return context
-
+    def get_queryset(self):
+        return  BookImage.objects.filter(book__category__slug=self.kwargs['category_slug'],
+                                         is_active=True, is_main=True, book__is_active=True)

@@ -28,25 +28,15 @@
   <!-- Page Content -->
   <div class="container">
       <div class="wrapper-content">
-
-    <div class="row">
-         {% include "sidebar.html"%}
-
-
-     <div class="col-lg-9">
-
-
-{% block content%}
- {% endblock %}
-
-
-
-      </div>
-      <!-- /.col-lg-9 -->
-
-
-    </div>
-    <!-- /.row -->
+        <div class="row">
+             {% include "sidebar.html"%}
+         <div class="col-lg-9">
+                {% block content%}
+                 {% endblock %}
+         </div>
+          <!-- /.col-lg-9 -->
+        </div>
+        <!-- /.row -->
           </div>
       {% include "footer.html"%}
   </div>

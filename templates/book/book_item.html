@@ -9,7 +9,6 @@
               <div class="discount-container">
                   <span>{{img_book.book.discount}}</span>
               </div>
-
           {% endif %}
           <div class="item-title">
             <h6>{{ img_book.book.name }}</h6>
@@ -20,7 +19,6 @@
           <div class="item-price">
               <p>  Цена: {{img_book.book.price}} UAH</p>
           </div>
-
             <div class="add-btn text-center   ">
             <form  class="form-inline form_buying_book justify-content-center" action="{% url 'orders:basket_adding'%}">{% csrf_token %}
                    <input type="number" value="1"   class="form-control number" style="width:50px" min="1" >
@@ -36,15 +34,6 @@
                      </button>
                    </div>
              </form>
-
-
           </div>
-
-
-
-
-
     </div>
-
-
 </div>
