@@ -79,7 +79,7 @@
       myleft = -(settings.imgWidth * (itemNum));
       myleftPagination = -(onePagination * itemNum);
       movePrev();
-      console.log(itemNum);
+      console.log('item',itemNum);
     });
 
     $("#rightArrow").on("click", function(e) {

@@ -11,31 +11,24 @@
 
     <div class="col-md-6">
         <div class="container">
-
-
 		<div class="albery-container img ">
-
 			<div class="albery-wrapper img">
-                  {% for image_item in detail_book.bookimage_set.all %}
+                  {% for image_item in detail_book.bookimage_set.all.reverse %}
 				<div class="albery-item img  ">
 					<img src="{{image_item.image.url}}" class="img-item" alt="">
 				</div>
 				{% endfor %}
-
 			</div>
-
 			<div class="move-right">
 				<a href="#" id="rightArrow"></a>
 			</div>
 			<div class="move-left">
 				<a href="#" id="leftArrow"></a>
 			</div>
-
 		</div>
-
 		<div class="pagination-container">
 			<div class="pagination-wrapper">
-                {% for image_item in detail_book.bookimage_set.all %}
+                {% for image_item in detail_book.bookimage_set.all.reverse %}
 				<div class="pagination-item" data-item="{{ forloop.counter }}">
 					<img src="{{image_item.image.url}}" alt="">
 				</div>

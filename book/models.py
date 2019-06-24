@@ -26,7 +26,7 @@ def pre_save_category_slug(sender,instance,*args,**kwargs):
         slug = slugify(translit(str(instance.name), reversed=True))
         instance.slug = slug
 
-        
+
 pre_save.connect(pre_save_category_slug, sender=BookCategory)
 
 

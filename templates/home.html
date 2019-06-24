@@ -13,17 +13,33 @@
 <!-- /.row -->
 
 
-<h1 class="text-center"> Суперхиты  </h1>
+<h1 class="text-center"> Хиты продаж  </h1>
 <div class="row">
- {% for img_book in product_images_superhit|slice:":8" %}
+ {% for img_book in product_images_hit|slice:":8" %}
             {% include "book/book_item.html"%}
  {% endfor %}
 </div>
 <!-- /.row -->
 
-  <h1 class="text-center"> Предзаказ  </h1>
+  <h1 class="text-center"> Рекомендуемые книги  </h1>
 <div class="row">
-  {% for img_book in product_images_pre_order|slice:":8" %}
+  {% for img_book in product_images_recommended_books|slice:":8" %}
+            {% include "book/book_item.html"%}
+  {% endfor %}
+</div>
+<!-- /.row -->
+
+<h1 class="text-center"> Последние поступления  </h1>
+<div class="row">
+  {% for img_book in product_images_last_add|slice:":8" %}
+            {% include "book/book_item.html"%}
+  {% endfor %}
+</div>
+<!-- /.row -->
+
+<h1 class="text-center"> Раcпродажа  </h1>
+<div class="row">
+  {% for img_book in product_images_sell_it|slice:":8" %}
             {% include "book/book_item.html"%}
   {% endfor %}
 </div>

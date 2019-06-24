@@ -13,9 +13,11 @@ class BookListView(ListView):
         context = super(BookListView, self).get_context_data(**kwargs)
         images_books = BookImage.objects.filter(is_active=True, is_main=True,book__is_active=True)
         context['images_books'] = images_books
-        context['product_images_superhit'] = images_books.filter(book__category__name='Суперхиты')
+        context['product_images_hit'] = images_books.filter(book__category__name='Хиты продаж')
         context['product_images_new'] = images_books.filter(book__category__name='Новинки')
-        context['product_images_pre_order'] = images_books.filter(book__category__name='Предзаказ')
+        context['product_images_last_add'] = images_books.filter(book__category__name='Последние поступления')
+        context['product_images_sell_it'] = images_books.filter(book__category__name='Раcпродажа')
+        context['product_images_recommended_books'] = images_books.filter(book__category__name='Рекомендуемые книги')
         context['images_for_slider']= Visual.objects.filter(is_active=True)
         session_key = self.request.session.session_key
         if not session_key:
@@ -35,7 +37,7 @@ class BookDetailView(DetailView):
 class CategoryDetailView(ListView):
     model = BookImage
     template_name = "book/book_category.html"
-    paginate_by = 3
+    paginate_by = 8
     context_object_name = 'contacts'
 
     def get_context_data(self, **kwargs):
